@@ -1,5 +1,8 @@
 # This calculates average runoff over latin america ##
 
+library(R.matlab)
+
+
 coord <- read.csv("/people/link593/wrk/gcam-auto/gcam-hydro/inputs/coordinates.csv", header=F)
 
 files <- list.files("/pic/projects/GCAM/CMIP5-data/hydro-output/", pattern="Avg_Runoff_*", full.names=T)
