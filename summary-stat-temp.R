@@ -89,9 +89,9 @@ for (e in ensemble_list){
       ## filter to desired spatial coordinates -- Latin America for now
       print("filter temp to Latin America")
       # longitudes are in 0-360 degree with 0 being in the pacific. 
-      dim_lam <- filterDimensions(d, lats=d$lat[d$lat >= -60 & d$lat <=15],
+      dim_lam <- filterDimensions(d, lats=d$lat[d$lat >= -60 & d$lat <=30],
                                 lons=d$lon[d$lon >= 60 & d$lon <=150])
-      area_lam <- filterDimensions(larea.frac, lats=larea.frac$lat[larea.frac$lat >= -60 & larea.frac$lat <=15], 
+      area_lam <- filterDimensions(larea.frac, lats=larea.frac$lat[larea.frac$lat >= -60 & larea.frac$lat <=30], 
                                  lons=larea.frac$lon[larea.frac$lon >= 60 & larea.frac$lon <=150])
 
 
