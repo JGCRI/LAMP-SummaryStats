@@ -9,9 +9,9 @@ library(dplyr)
 path <-  "/people/mund663/evergreen/tarred/CMIP5-temp"
 areapath <- "/people/mund663/evergreen/tarred/CMIP5-temp/Landareas"
 landfracpath <- "/people/mund663/evergreen/tarred/CMIP5-temp/Landfrac"
-OUTPUT_DIR <- "/people/mund663/evergreen/tarred/CMIP5-temp/summary-stat/"
+OUTPUT_DIR <- "/people/mund663/work/LAMP-SummaryStats/output/"
 
-experiments <- c( "historical", "rcp45", "rcp85")
+experiments <- c( "historical", "rcp26", "rcp45", "rcp60", "rcp85")
 varlist <- c("tas")
 areavar <- "areacella"
 landfracvar <- "sftlf"
@@ -105,7 +105,9 @@ for (e in ensemble_list){
      
       ## take spatial average
       print("take spatial average over s.america")
-      lam_avg <- makeGlobalStat(dim_lam, area=area_lam, verbose=T, FUN=weighted.mean, na.rm=TRUE)
+      #lam_avg <- makeGlobalStat(dim_lam, area=area_lam, verbose=T, FUN=weighted.mean, na.rm=TRUE)
+      lam_avg <- makeGlobalStat(dim_lam, verbose=T, FUN=mean, na.rm=TRUE)
+
       #lam_avg <- makeGlobalStat(dim_lam, area=larea, verbose=T, FUN=weighted.mean, na.rm=TRUE)
       tas_lam <- convert_todf(lam_avg, vname=v)
 	    tas_lam$ensemble <- e
