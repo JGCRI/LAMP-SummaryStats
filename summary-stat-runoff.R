@@ -16,7 +16,7 @@ first=TRUE
 
 for (f in files){
   
-  cat("\t\t", "Reading matlab runoff data", "\n", f)
+  cat("\t\t", "Reading matlab runoff data", "\n", f, "\n")
   d <- readMat(f)
   df <- as.data.frame(d$q)
   
