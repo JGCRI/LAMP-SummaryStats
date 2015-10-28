@@ -74,8 +74,7 @@ for (e in ensemble_list){
       larea.frac$val$value <- larea$val$value * lfrac$val$value
       
       # load data file
-      d <- loadCMIP5( variable=v, model=m, experiment=ex, ensemble= e, path=path, verbose=T, yearRange=c(1984, 2060))
-#     d <- loadCMIP5( variable="tas", model="ACCESS1-0", experiment="rcp85", ensemble="r1i1p1", path=path, verbose=T) 
+      d <- loadCMIP5( variable=v, model=m, experiment=ex, ensemble= e, path=path, verbose=T)
       
       if (is.null(d)) next
 
@@ -106,11 +105,9 @@ for (e in ensemble_list){
       ## take spatial average
       print("take spatial average over s.america")
       lam_avg <- makeGlobalStat(dim_lam, area=area_lam, verbose=T, FUN=weighted.mean, na.rm=TRUE)
-      #lam_avg <- makeGlobalStat(dim_lam, verbose=T, FUN=mean, na.rm=TRUE)
-
-      #lam_avg <- makeGlobalStat(dim_lam, area=larea, verbose=T, FUN=weighted.mean, na.rm=TRUE)
+     
       tas_lam <- convert_todf(lam_avg, vname=v)
-	    tas_lam$ensemble <- e
+      tas_lam$ensemble <- e
       
       # write file out, append to same file as you go along
       outfnm <- paste0( OUTPUT_DIR, v, "_", ex, "_", e, ".csv" )

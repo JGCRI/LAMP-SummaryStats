@@ -33,7 +33,7 @@ for (f in files){
   			 as.Date(paste0(endyear, "/", endmonth, "/", "01")), by="month")
   
   # historical has bogus data so dates on filename dont match amount of data in file
-  # historical has bogus data so dates on filename dont match amount of data in file
+
   if ( length(df) != length(dates) )  {
   
     # assign bogus data bogus years
