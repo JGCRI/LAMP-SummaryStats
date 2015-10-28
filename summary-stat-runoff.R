@@ -29,12 +29,19 @@ startmonth <- substr ( strsplit(filename, "_")[[1]][length(strsplit(filename, "_
 endmonth <- substr ( strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) ], 5, 6 )
 
 
-
-
 dates <- seq(as.Date(paste0(startyear, "/", startmonth, "/", "01")),
 			 as.Date(paste0(endyear, "/", endmonth, "/", "01")), by="month")
 
+if ( length(df) != length(dates) )	{
+
+dates <- seq(as.Date(paste0("1906", "/", "01", "/", "01")),
+			 as.Date(paste0("2005", "/", "12", "/", "01")), by="month")
+			 }		 
+			 
 names(df) <- dates
+
+#get rid of bogus data and keep only 1950-2005
+df <- df[,c(529:1200)] 
 
 df$latitude <- coord$V3
 df$longitude <- coord$V2
