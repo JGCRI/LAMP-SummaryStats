@@ -10,6 +10,8 @@ files <- grep(pattern=".mat", x=files, value=T)
 first=TRUE
 
 for (f in files){
+
+cat("\t\t", "Reading matlab runoff data", "\n", f)
 d <- readMat(f)
 df <- as.data.frame(d$q)
 
@@ -18,6 +20,11 @@ df <- as.data.frame(d$q)
 filename <- strsplit(f, "/")[[1]][length(strsplit(f, "/")[[1]])]
 startyear <- substr ( strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) - 1 ], 1, 4 )
 endyear <- substr ( strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) ], 1, 4 )
+startmonth <- substr ( strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) - 1 ], 5, 6 )
+endmonth <- substr ( strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) ], 5, 6 )
+
+
+
 
 dates <- seq(as.Date(paste0(startyear, "/", startmonth, "/", "01")),
 			 as.Date(paste0(endyear, "/", endmonth, "/", "01")), by="month")
@@ -51,6 +58,7 @@ d.lam$region <- "Latin America"
 
 colnames(d.lam)[1] <- "value"
 
+cat("Writing output to file", "\n\n")
 write.table( results, file="runoff.csv", row.names=F, sep=",", col.names=first, append=!first)
 
 first = FALSE
