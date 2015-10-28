@@ -1,4 +1,4 @@
-d <- readMat("/pic/projects/GCAM/LAMP/Avg_Runoff_235_IPSL_CM5A_LR_rcp45_r1i1p1_200601_210012.mat")
+# This calculates average runoff over latin america ##
 
 coord <- read.csv("/people/link593/wrk/gcam-auto/gcam-hydro/inputs/coordinates.csv", header=F)
 
