@@ -33,21 +33,24 @@ for (f in files){
   			 as.Date(paste0(endyear, "/", endmonth, "/", "01")), by="month")
   
   # historical has bogus data so dates on filename dont match amount of data in file
-  if ( length(df) != length(dates) )	{
+  # historical has bogus data so dates on filename dont match amount of data in file
+  if ( length(df) != length(dates) )  {
   
     # assign bogus data bogus years
-    dates <- seq(as.Date(paste0("1906", "/", "01", "/", "01")),
-    			       as.Date(paste0("2005", "/", "12", "/", "01")), by="month")
-    
-    names(df) <- dates
-    
+    bogusdates <- seq(as.Date(paste0("1906", "/", "01", "/", "01")),
+                    as.Date(paste0("2005", "/", "12", "/", "01")), by="month")
+  
+    names(df) <- bogusdates
+  
     #get rid of bogus data and keep only 1950-2005
     df <- df[,c(529:1200)] 
   
-  } 
-    			 
-  # column names
-  names(df) <- dates
+  } else {
+  
+    # column names
+    names(df) <- dates 
+  }		 
+ 
   
   df$latitude <- coord$V3
   df$longitude <- coord$V2
