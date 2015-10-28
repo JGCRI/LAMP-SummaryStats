@@ -6,9 +6,9 @@ library(ncdf4)
 library(dplyr)
 
 
-path <-  "/people/mund663/evergreen/tarred/CMIP5-temp"
-areapath <- "/people/mund663/evergreen/tarred/CMIP5-temp/Landareas"
-landfracpath <- "/people/mund663/evergreen/tarred/CMIP5-temp/Landfrac"
+path <-  "/pic/projects/GCAM/CMIP5-anupriya/Temperature"
+areapath <- "/pic/projects/GCAM/CMIP5-anupriya/Landareas"
+landfracpath <- "/pic/projects/GCAM/CMIP5-anupriya/Landfrac"
 OUTPUT_DIR <- "/people/mund663/work/LAMP-SummaryStats/output/"
 
 experiments <- c( "historical", "rcp26", "rcp45", "rcp60", "rcp85")
