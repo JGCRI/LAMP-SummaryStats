@@ -6,6 +6,8 @@ library(R.matlab)
 coord <- read.csv("/people/link593/wrk/gcam-auto/gcam-hydro/inputs/coordinates.csv", header=F)
 
 files <- list.files("/pic/projects/GCAM/CMIP5-data/hydro-output/", pattern="Avg_Runoff_*", full.names=T)
+
+#subset only the matlab files
 files <- grep(pattern=".mat", x=files, value=T)
 
 #loop counter
@@ -62,7 +64,7 @@ d.lam$region <- "Latin America"
 colnames(d.lam)[1] <- "value"
 
 cat("Writing output to file", "\n\n")
-write.table( results, file="runoff.csv", row.names=F, sep=",", col.names=first, append=!first)
+write.table( d.lam, file="runoff.csv", row.names=F, sep=",", col.names=first, append=!first)
 
 first = FALSE
 

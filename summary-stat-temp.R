@@ -105,8 +105,8 @@ for (e in ensemble_list){
      
       ## take spatial average
       print("take spatial average over s.america")
-      #lam_avg <- makeGlobalStat(dim_lam, area=area_lam, verbose=T, FUN=weighted.mean, na.rm=TRUE)
-      lam_avg <- makeGlobalStat(dim_lam, verbose=T, FUN=mean, na.rm=TRUE)
+      lam_avg <- makeGlobalStat(dim_lam, area=area_lam, verbose=T, FUN=weighted.mean, na.rm=TRUE)
+      #lam_avg <- makeGlobalStat(dim_lam, verbose=T, FUN=mean, na.rm=TRUE)
 
       #lam_avg <- makeGlobalStat(dim_lam, area=larea, verbose=T, FUN=weighted.mean, na.rm=TRUE)
       tas_lam <- convert_todf(lam_avg, vname=v)
