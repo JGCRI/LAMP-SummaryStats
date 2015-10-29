@@ -21,7 +21,7 @@ for (f in files){
   df <- as.data.frame(d$q)
   
   #### parse file name for time range....##
-  
+  ## very badly hacked way of parsing through filename, need alternative ## 
   filename <- strsplit(f, "/")[[1]][length(strsplit(f, "/")[[1]])]
   startyear <- substr ( strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) - 1 ], 1, 4 )
   endyear <- substr ( strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) ], 1, 4 )
@@ -84,13 +84,11 @@ for (f in files){
   d.lam$year <- as.numeric(substr(d.lam$date, 1,4))
   d.lam$month <- as.numeric(substr(d.lam$date, 6,7))
   
-  ## very badly hacked way of parsing through filename, need alternative ## 
-  
-  d.lam$model <- strsplit(filename, "_")[[1]][4]
-  d.lam$scenario <- strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) - 3 ]
-  d.lam$ensemble <- strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) - 2 ]
-  d.lam$variable <- "runoff"
-  d.lam$region <- "Latin America"
+  d.lam$model <- model 
+  d.lam$scenario <- scenario 
+  d.lam$ensemble <- ensemble 
+  d.lam$variable <- variable 
+  d.lam$region <- region 
   
   colnames(d.lam)[1] <- "value"
   
