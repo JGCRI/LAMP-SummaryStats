@@ -27,14 +27,23 @@ for (f in files){
   endyear <- substr ( strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) ], 1, 4 )
   startmonth <- substr ( strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) - 1 ], 5, 6 )
   endmonth <- substr ( strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) ], 5, 6 )
+	
+  model <- strsplit(filename, "_")[[1]][4]
+  scenario <- strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) - 3 ]
+  ensemble <- strsplit(filename, "_")[[1]][length(strsplit(filename, "_")[[1]]) - 2 ]
+  variable <- "runoff"
+  region <- "Latin America"
   
+
+
+
   # dates of the correct data 
   dates <- seq(as.Date(paste0(startyear, "/", startmonth, "/", "01")),
   			 as.Date(paste0(endyear, "/", endmonth, "/", "01")), by="month")
   
   # historical has bogus data so dates on filename dont match amount of data in file
 
-  if ( length(df) != length(dates) )  {
+  if ( scenario == "historical" )  {
   
     # assign bogus data bogus years
     bogusdates <- seq(as.Date(paste0("1906", "/", "01", "/", "01")),
@@ -45,10 +54,16 @@ for (f in files){
     #get rid of bogus data and keep only 1950-2005
     df <- df[,c(529:1200)] 
   
-  } else {
+  } else { # rcps have 5 bogus years
   
-    # column names
-    names(df) <- dates 
+       # assign bogus data bogus years
+    bogusdates <- seq(as.Date(paste0("2001", "/", "01", "/", "01")),
+                    as.Date(paste0("2100", "/", "12", "/", "01")), by="month")
+  
+    names(df) <- bogusdates
+  
+    #get rid of bogus data and keep only 2006-2100
+    df <- df[,c(61:1200)] 
   }		 
  
   
