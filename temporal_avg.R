@@ -3,11 +3,12 @@ library(reshape)
 
 options(stringsAsfactors=FALSE)
 
+# all temperature files (temperature data is spread over different files)
 files <- list.files(path="~/LAMP-summary-stat/output/", pattern=glob2rx("tas_*.csv"), full.names=T)
 
 read.csv.mystyle <- function(f) {
   a <- scan(f, what="complex", nmax=3, sep=",")
-  h <- ifelse(a[[2]]=="time", TRUE, FALSE) # some input files heave headers, some dont.
+  h <- ifelse(a[[2]]=="time", TRUE, FALSE) # some input files heave headers, some dont, my bad.
   dat <- read.table(f, header=h, sep=",", stringsAsFactors=FALSE)  
   colnames(dat) <- c("Z","time","value","lon", "lat", "units", 
                      "variable","scenario","type","model", "ensemble")
@@ -70,8 +71,8 @@ results.var$decadal.mean <- results [ match(paste0( results.var$month, results.v
 ###########################################
 ###########################################
 ###########################################
-## RUNOFF ###
 
+## RUNOFF ###
 
 r <- read.csv("~/LAMP-SummaryStats/runoff.csv")
 
